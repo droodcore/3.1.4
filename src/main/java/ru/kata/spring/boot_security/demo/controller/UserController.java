@@ -33,7 +33,7 @@ public class UserController {
 
     @GetMapping("/user")
     public String usersRootPage(Principal principal, Model model) {
-        model.addAttribute("user", principal);
+        model.addAttribute("authenticatedUser", userService.findByEmail(principal.getName()));
         return "user";
     }
 

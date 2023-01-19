@@ -4,8 +4,8 @@
     <title>Spring Security Example</title>
 </head>
 <body>
-<h1 th:text="${user.getName()}"></a>, information</h1>
-
+<h1 th:text="${authenticatedUser.getEmail()}"></a>, information</h1>
+<h3>You're just a  <a th:text="${authenticatedUser.rolesTrim()}">who</a></h3>
 <br><br>
 <a th:href="@{/logout}">Logout</a>
 </body>

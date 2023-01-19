@@ -49,8 +49,7 @@ public class UserServiceImpl implements UserDetailsService {
     }
 
     @Transactional
-    public void update(Long id, User updatedUser) {
-        updatedUser.setId(id);
+    public void update(User updatedUser) {
         updatedUser.setPassword((new BCryptPasswordEncoder().encode(updatedUser.getPassword())));
         userRepository.save(updatedUser);
     }

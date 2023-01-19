@@ -9,6 +9,7 @@ import ru.kata.spring.boot_security.demo.service.RoleServiceImpl;
 import ru.kata.spring.boot_security.demo.service.UserServiceImpl;
 
 import java.security.Principal;
+import java.util.List;
 
 @Controller
 @RequestMapping("/admin")
@@ -29,7 +30,7 @@ public class AdminController {
         model.addAttribute("authenticatedUser", userService.findByEmail(principal.getName()))
              .addAttribute("users", userService.findAll())
              .addAttribute("roles", roleService.findAll());
-        return "index";
+        return "admin/newIndex";
     }
 
     @GetMapping("/{id}")
@@ -46,7 +47,7 @@ public class AdminController {
     @PostMapping()
     public String create(@ModelAttribute("user") User user) {
         userService.save(user);
-        return "redirect:/index";
+        return "redirect:/newIndex";
     }
 
     @GetMapping("/{id}/edit")
@@ -57,7 +58,7 @@ public class AdminController {
 
     @PatchMapping("/{id}")
     public String update(@ModelAttribute("user") User user, @PathVariable("id") Long id) {
-        userService.update(id, user);
+        userService.update(user);
         return "redirect:/admin/";
     }
 
