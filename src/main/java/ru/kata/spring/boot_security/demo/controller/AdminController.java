@@ -33,27 +33,27 @@ public class AdminController {
         return "admin/newIndex";
     }
 
-    @GetMapping("/{id}")
-    public String show(@PathVariable("id") Long id, Model model) {
-        model.addAttribute("user", userService.findById(id));
-        return "admin/show";
-    }
+//    @GetMapping("/{id}")
+//    public String show(@PathVariable("id") Long id, Model model) {
+//        model.addAttribute("user", userService.findById(id));
+//        return "admin/newIndex";
+//    }
 
-    @GetMapping("new")
-    public String newPerson(@ModelAttribute("user") User user) {
-        return "admin/new";
-    }
+//    @GetMapping("new")
+//    public String newPerson(@ModelAttribute("user") User user) {
+//        return "admin/new";
+//    }
 
     @PostMapping()
     public String create(@ModelAttribute("user") User user) {
         userService.save(user);
-        return "redirect:/newIndex";
+        return "redirect:/admin";
     }
 
     @GetMapping("/{id}/edit")
     public String edit(Model model, @PathVariable("id") Long id) {
         model.addAttribute("user", userService.findById(id));
-        return "admin/edit";
+        return "admin/newIndex";
     }
 
     @PatchMapping("/{id}")
